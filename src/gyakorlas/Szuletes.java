@@ -29,4 +29,10 @@ public class Szuletes {
 		return sex;
 
 	}
+
+	public String getSzuletesiIdo() {
+		return szuletesiIdo;
+	}
+	
+	
 }
