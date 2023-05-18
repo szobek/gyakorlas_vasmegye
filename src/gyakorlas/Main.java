@@ -5,31 +5,44 @@ import java.util.List;
 
 public class Main {
 	static List<Szuletes> szuletesiLista = new ArrayList<Szuletes>();
+	static String sor = null;
+	static int nemAzonosito = 0;
+	
 	public static void main(String[] args) {
-FileHandling.readFile("vas.txt",szuletesiLista);
+		FileHandling.readFile("vas.txt", szuletesiLista);
+		nemMegfeleloAzonositokTorlese();
+		}
 
-	int nemAzonosito=0;
+	public static void nemMegfeleloAzonositokTorlese() {
+		System.out.println("4. FELADAT:");
+		for (int i = 0; i < szuletesiLista.size(); i++) {
+			String nem = szuletesiLista.get(i).getNeme();
+			String szuletesiIdõ = szuletesiLista.get(i).getSzuletesiIdo();
 
-	for (Szuletes szuletes : szuletesiLista) {
-		String nem = szuletes.getNeme();
-		String szuletesiIdõ = szuletes.getSzuletesiIdo();
-		
-		if ((nem.equals("férfi")) && (szuletesiIdõ.charAt(0)=='9')) {
-			nemAzonosito=1;	
+			if ((nem.equals("férfi")) && (szuletesiIdõ.charAt(0) == '9')) {
+				nemAzonosito = 1;
+				}
+			if ((nem.equals("férfi")) && (szuletesiIdõ.charAt(0) == '2')) {
+				nemAzonosito = 3;
+				}
+			if ((nem.equals("nõ")) && (szuletesiIdõ.charAt(0) == '9')) {
+				nemAzonosito = 2;
+				}
+			if ((nem.equals("nõ")) && (szuletesiIdõ.charAt(0) == '2')) {
+				nemAzonosito = 4;
+				}
+
+			sor = nemAzonosito + "-" + szuletesiLista.get(i).getSzuletesiIdo() + "-"
+					+ szuletesiLista.get(i).getAzonosNapiKod() + szuletesiLista.get(i).getEllenorzoKarakter();
+
+			if (!(Szuletes.CdvE11(sor))) {
+				szuletesiLista.remove(i);
+				}	
 		}
-		if ((nem.equals("férfi")) && (szuletesiIdõ.charAt(0)=='2')) {
-			nemAzonosito=3;	
-		}
-		if ((nem.equals("nõ")) && (szuletesiIdõ.charAt(0)=='9')) {
-			nemAzonosito=2;	
-		}
-		if ((nem.equals("nõ")) && (szuletesiIdõ.charAt(0)=='2')) {
-			nemAzonosito=4;	
-		}
-		
-		String sor = nemAzonosito+"-"+szuletes.getSzuletesiIdo()+"-"+szuletes.getAzonosNapiKod()+szuletes.getEllenorzoKarakter();
-		System.out.println(sor+" "+Szuletes.CdvE11(sor));
+
+		System.out.println("Rossz adatok törölve.");
+	
 	}
 
-	}
 }
+
