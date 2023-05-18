@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Main {
@@ -35,10 +36,11 @@ public class Main {
 
 			String sor = nemAzonosito + "-" + szuletes.getSzuletesiIdo() + "-" + szuletes.getAzonosNapiKod()
 					+ szuletes.getEllenorzoKarakter();
-			System.out.println(sor + " " + Szuletes.CdvE11(sor));
+			//System.out.println(sor + " " + Szuletes.CdvE11(sor));
 		}
 		FileHandling.readFile("vas.txt", szuletesiLista);
-		new Main().sumAllBabiesBetweenDates("900101", "990101");
+		//new Main().sumAllBabiesBetweenDates("900101", "990101");
+		new Main().writeYearsFromStartToEnd("1999-12-10", "2020-11-01" );
 	}
 
 	private void sumAllBabiesBetweenDates(String startDate, String endDate) {
@@ -60,6 +62,17 @@ public class Main {
 			e.printStackTrace();
 		}
 
+	}
+	
+	private void writeYearsFromStartToEnd(String startDate, String endDate) {
+		try {
+			LocalDate fromDate = LocalDate.parse(startDate);
+			LocalDate toDate = LocalDate.parse(endDate);
+			System.out.println(fromDate.getYear()  +" - "+ toDate.getYear());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
