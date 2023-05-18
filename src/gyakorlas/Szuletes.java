@@ -5,6 +5,11 @@ public class Szuletes {
 	private String szuletesiIdo;
 	private String azonosNapiKod;
 	private char ellenorzoKarakter;
+	private char szemelyKod;
+
+	public char getSzemelyKod() {
+		return szemelyKod;
+	}
 
 	public Szuletes(String neme, String szuletesiIdo, String azonosNapiKod, char ellenorzoKarakter) {
 		this.neme = neme;
@@ -18,6 +23,7 @@ public class Szuletes {
 		this.szuletesiIdo = csvSor.substring(2,8);
 		this.azonosNapiKod = csvSor.substring(9,12);
 		this.ellenorzoKarakter = csvSor.charAt(12);
+		this.szemelyKod = csvSor.charAt(0);
 	}
 
 	private String setSex(char nem) {

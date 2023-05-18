@@ -4,10 +4,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 public class Main {
 	static List<Szuletes> szuletesiLista = new ArrayList<Szuletes>();
@@ -36,11 +37,11 @@ public class Main {
 
 			String sor = nemAzonosito + "-" + szuletes.getSzuletesiIdo() + "-" + szuletes.getAzonosNapiKod()
 					+ szuletes.getEllenorzoKarakter();
-			//System.out.println(sor + " " + Szuletes.CdvE11(sor));
+			// System.out.println(sor + " " + Szuletes.CdvE11(sor));
 		}
-		FileHandling.readFile("vas.txt", szuletesiLista);
-		//new Main().sumAllBabiesBetweenDates("900101", "990101");
-		new Main().writeYearsFromStartToEnd("1999-12-10", "2020-11-01" );
+		// new Main().sumAllBabiesBetweenDates("900101", "990101");
+		// new Main().writeYearsFromStartToEnd("1999-12-10", "2020-11-01" );
+		new Main().statisticByYear();
 	}
 
 	private void sumAllBabiesBetweenDates(String startDate, String endDate) {
@@ -63,15 +64,38 @@ public class Main {
 		}
 
 	}
-	
+
 	private void writeYearsFromStartToEnd(String startDate, String endDate) {
 		try {
 			LocalDate fromDate = LocalDate.parse(startDate);
 			LocalDate toDate = LocalDate.parse(endDate);
-			System.out.println(fromDate.getYear()  +" - "+ toDate.getYear());
+			System.out.println(fromDate.getYear() + " - " + toDate.getYear());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+
+	private void statisticByYear() {
+
+		Map<String, Integer> map = new TreeMap<String, Integer>();
+		System.out.println(" Statistika");
+		for (Szuletes szuletesItem : szuletesiLista) {
+			String szuetesiDatum = "";
+
+			switch (szuletesItem.getSzemelyKod()) {
+			case '1', '2' -> szuetesiDatum = "19" + szuletesItem.getSzuletesiIdo().substring(0, 2);
+			case '3', '4' -> szuetesiDatum = "20" + szuletesItem.getSzuletesiIdo().substring(0, 2);
+			}
+
+			if (!map.containsKey(szuetesiDatum)) {
+				map.put(szuetesiDatum, 1);
+			} else {
+				map.replace(szuetesiDatum, map.get(szuetesiDatum), map.get(szuetesiDatum) + 1);
+			}
+		}
+
+		for (Entry<String, Integer> mapItem : map.entrySet()) {
+			System.out.println(mapItem.getKey() +" - "+mapItem.getValue()+" fõ" );
 		}
 	}
 
