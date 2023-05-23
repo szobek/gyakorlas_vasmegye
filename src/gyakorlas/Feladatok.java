@@ -162,11 +162,11 @@ public class Feladatok {
 				
 				if (szuletesiIdõ.charAt(0) == '9') { //eleg ennyit vizsgalni, mivel 1997 utáni értékek lehetnek az evszamok
 					evMeghataroz = 1900 + Integer.parseInt(szuletesiIdõ.substring(0,2));
-					System.out.println(evMeghataroz+"::"+ Integer.parseInt(szuletesiIdõ.substring(0,2)));
+					// System.out.println(evMeghataroz+"::"+ Integer.parseInt(szuletesiIdõ.substring(0,2)));
 					}
 				if (szuletesiIdõ.charAt(0) != '9') {
 					evMeghataroz = 2000 + Integer.parseInt(szuletesiIdõ.substring(0,2));		
-					System.out.println(evMeghataroz+"::"+ Integer.parseInt(szuletesiIdõ.substring(0,2)));
+					// System.out.println(evMeghataroz+"::"+ Integer.parseInt(szuletesiIdõ.substring(0,2)));
 
 					}
 				if (i==0) { //tomb kezdoertekeinek megadasa
