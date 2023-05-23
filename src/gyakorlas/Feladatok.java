@@ -17,7 +17,7 @@ public class Feladatok {
 	static int nemAzonosito = 0;
 	
 	public Feladatok(List<Szuletes> szuletesiLista) {
-		this.szuletesiLista=szuletesiLista;
+		Feladatok.szuletesiLista=szuletesiLista;
 	}
 	/**
 	 * Chech the year is leao
@@ -227,9 +227,9 @@ public class Feladatok {
 	}
 	
 	public void a7esFeladatByAdian() {
-		System.out.println("7. FELADAT:");
+		System.out.print("7. FELADAT: ");
 		evSzamHatarertekek= evszamHatarertek();
-		System.out.println(evSzamHatarertekek[0]+"-"+evSzamHatarertekek[1]);
+		System.out.println("Vizsgált idõszak: "+evSzamHatarertekek[0]+"-"+evSzamHatarertekek[1]);
 	}
 	
 	
