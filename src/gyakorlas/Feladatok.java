@@ -212,15 +212,15 @@ public class Feladatok {
 
 			if (!(Szuletes.CdvE11(sor))) {
 				szuletesiLista.remove(i);
+				{ System.out.println("Hibás a "+sor+" azonosító.  "); }
 			}
 		}
 
-		System.out.println("Rossz adatok törölve.");
 
 	}
 	
 	public void a4esFeladatByAdrian() {
-		System.out.println("4. FELADAT:");
+		System.out.println("4. FELADAT: Ellenõrzés");
 		nemMegfeleloAzonositokTorlese();
 		
 		
